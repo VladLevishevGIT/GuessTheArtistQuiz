@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +26,7 @@ public class JSONReader {
 	public JSONObject readJsonFromURL (String url) throws MalformedURLException, IOException, JSONException{
 			InputStream is = new URL(url).openStream();
 		try{
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
 			String jsonText = readAll(br);
 			JSONObject json = new JSONObject(jsonText);
 		return json;

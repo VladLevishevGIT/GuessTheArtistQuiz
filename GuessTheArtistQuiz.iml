@@ -20,10 +20,10 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.0.M17" level="application_server_libraries" />
-    <orderEntry type="library" name="org.json" level="project" />
-    <orderEntry type="library" name="javax.ws.rs" level="project" />
-    <orderEntry type="library" name="javax.servlet" level="project" />
-    <orderEntry type="library" name="jersey-server-1.9.1" level="project" />
     <orderEntry type="library" name="apache-tomcat-9.0.0" level="project" />
+    <orderEntry type="library" name="org.json" level="project" />
+    <orderEntry type="library" name="jersey-server-1.9.11" level="project" />
+    <orderEntry type="library" name="javax.ws.rs1" level="project" />
+    <orderEntry type="library" name="javax.servlet1" level="project" />
   </component>
 </module>

@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
+import org.apache.catalina.util.URLEncoder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,23 +13,16 @@ public class QuizListCreator {
 
 	public static ArrayList<String> artistsList = new ArrayList<String>();
 	static {
-		String str = "Алиса";
-		artistsList.add("Madonna");
-		artistsList.add("Rihanna");
-		artistsList.add("Sia");
-		artistsList.add("Adele");
-		artistsList.add(str);
+		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
+		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
+		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
+		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
+		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
 	}
 
 	public String artistRandomChooser() {
-		String URL;
-		String str = "Алиса";
-		System.out.println("Алиса");
-		System.out.println(artistsList.toString());
 		String artist = artistsList.get((int) (Math.random() * 5));
-		System.out.println(artist);
-		URL = "https://itunes.apple.com/ru/search?term=" + artist + "&limit=10";
-		System.out.println(URL);
+		String URL = "https://itunes.apple.com/ru/search?term=" + artist + "&limit=10";
 		return URL;
 	}
 
@@ -69,12 +63,6 @@ public class QuizListCreator {
 		round.setSecondSong(secondSong);
 		round.setThirdSong(thirdSong);
 		round.setImageURL(imageURL);
-		System.out.println(round.getArtistName());
-
-		/*
-		 * round.setArtistName("artist"); round.setFirstSong("firstSong");
-		 * round.setSecondSong("secondSong"); round.setThirdSong("thirdSong"); round.setImageURL("imageURL");
-		 */
 
 		return round;
 	}

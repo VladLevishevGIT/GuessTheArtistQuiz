@@ -129,7 +129,6 @@ public class QuizWebService {
 			if (!session.equals(null)) {
 				QuizListCreator qc = new QuizListCreator();
 				JavaRoundBean round = qc.RoundCreator(qc.artistRandomChooser());
-				System.out.println(round.getArtistName());
 				return round;
 			} else {
 				res.sendError(505);

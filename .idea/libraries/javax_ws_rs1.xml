@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="javax.ws.rs1">
+    <CLASSES>
+      <root url="jar://D:/MyProjects/Java/ExternalJars/javax.ws.rs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/MyProjects/Java/ExternalJars/javax.ws.rs.jar!/" />
+    </SOURCES>
+  </library>
+</component>

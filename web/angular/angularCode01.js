@@ -10,7 +10,6 @@ quizMainApp.controller("QuizAppCtrl", function ($http, $scope) {
     then(function(response) {
         $scope.returnedRound = response.data;
         $scope.firstSong = $scope.returnedRound.firstSong;
-        alert($scope.returnedRound.artistName)
         $scope.artistName = $scope.returnedRound.artistName;
     });
 
