@@ -1,17 +1,36 @@
 var quizMainApp = angular.module("QuizApp", [])
 
 quizMainApp.controller("QuizAppCtrl", function ($http, $scope) {
-    $scope.firstSongCount = true;
-    $scope.secondSongCount = true;
-    $scope.roundScore = 50;
-    $scope.totalScore = 0;
-    $scope.roundNumber = 1;
-    $http.get('rest/quizWebService/getFirstSong01').
-    then(function(response) {
-        $scope.returnedRound = response.data;
-        $scope.firstSong = $scope.returnedRound.firstSong;
-        $scope.artistName = $scope.returnedRound.artistName;
-    });
+
+    $scope.chooseEnglishVersion = function(){
+        $scope.chooseVersion = true;
+        $scope.englishVersion = true;
+        $scope.russianVersion = false;
+        $scope.language = "english";
+        $scope.getFirstSong("english");
+    }
+
+    $scope.chooseRussianVersion = function(){
+        $scope.chooseVersion = true;
+        $scope.englishVersion = false;
+        $scope.russianVersion = true;
+        $scope.language = "russian";
+        $scope.getFirstSong("russian");
+    }
+
+    $scope.getFirstSong = function (language) {
+        $scope.firstSongCount = true;
+        $scope.secondSongCount = true;
+        $scope.roundScore = 50;
+        $scope.totalScore = 0;
+        $scope.roundNumber = 1;
+        $http.get('rest/quizWebService/getFirstSong/'+language).
+            then(function(response) {
+                $scope.returnedRound = response.data;
+                $scope.firstSong = $scope.returnedRound.firstSong;
+                $scope.artistName = $scope.returnedRound.artistName;
+            })
+    }
 
     $scope.getOneMoreSong = function (inputValue) {
             if (inputValue == $scope.returnedRound.artistName) {
@@ -64,26 +83,22 @@ quizMainApp.controller("QuizAppCtrl", function ($http, $scope) {
             $scope.totalScore = $scope.roundScore + $scope.totalScore;
             $scope.roundScore = 50;
             $scope.roundNumber = $scope.roundNumber + 1;
-            $http.get('rest/quizWebService/getFirstSong01').then(function (response) {
+            $http.get('rest/quizWebService/getFirstSong/'+$scope.language).then(function (response) {
                 $scope.returnedRound = response.data;
                 $scope.firstSong = $scope.returnedRound.firstSong;
                 $scope.artistName = $scope.returnedRound.artistName;
             });
     }
 
-    $scope.backLinkClick = function () {
-        window.location.reload(false);
+    $scope.changeLanguage = function () {
+        window.location.reload(true);
     };
 
-    $scope.chooseEnglishVersion = function(){
-        $scope.chooseVersion = true;
-        $scope.englishVersion = true;
-        $scope.russianVersion = false;
-    }
+    $scope.newGame = function () {
+        $scope.qiuzMainPanel = false;
+        $scope.roundNumber = 0;
+        $scope.totalScore = 0;
+        $scope.nextRound();
+    };
 
-    $scope.chooseRussianVersion = function(){
-        $scope.chooseVersion = true;
-        $scope.englishVersion = false;
-        $scope.russianVersion = true;
-    }
 })

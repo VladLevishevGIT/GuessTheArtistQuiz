@@ -12,7 +12,7 @@ public class Test {
 	System.out.println(s);
 
 		QuizListCreator qc = new QuizListCreator();
-		qc.artistRandomChooser();
+		qc.artistRandomChooser("string");
 
 	}
 }

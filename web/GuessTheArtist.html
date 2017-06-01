@@ -77,7 +77,8 @@
                  </div>
                      <div ng-show="qiuzMainPanel" class="text-center">
                          <h1><strong>TOTAL SCORE: {{totalScore}}</strong></h1>
-                         <button class="btn btn-danger" ng-click="backLinkClick()">New Game</button>
+                         <button class="btn btn-danger" ng-click="newGame()">New Game</button>
+                         <button class="btn btn-danger col-lg-offset-1" ng-click="changeLanguage()">Change Language</button>
                      </div>
                 Hint: {{artistName}}
              </div>
@@ -140,7 +141,8 @@
             </div>
             <div ng-show="qiuzMainPanel" class="text-center">
                 <h1><strong>TOTAL SCORE: {{totalScore}}</strong></h1>
-                <button class="btn btn-danger" ng-click="backLinkClick()">New Game</button>
+                <button class="btn btn-danger" ng-click="newGame()">New Game</button>
+                <button class="btn btn-danger col-lg-offset-1" ng-click="changeLanguage()">Change Language</button>
             </div>
             Hint: {{artistName}}
         </div>

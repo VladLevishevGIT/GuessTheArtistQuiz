@@ -13,25 +13,46 @@ import org.json.JSONObject;
 
 public class QuizListCreator {
 
-	public static ArrayList<String> artistsList = new ArrayList<String>();
-	static {
+	public static ArrayList<String> artistsListRussian = new ArrayList<String>();
+    static {
         try {
-            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
-            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
-            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
-            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
-            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
-            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsListRussian.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsListRussian.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsListRussian.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsListRussian.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsListRussian.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsListRussian.add(URLEncoder.encode("Ария", "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
-	}
+    }
 
-	public String artistRandomChooser() {
-		String artist = artistsList.get((int) (Math.random() * 5));
-		String URL = "https://itunes.apple.com/ru/search?term=" + artist + "&limit=10";
-		return URL;
+    public static ArrayList<String> artistsListEnglish = new ArrayList<String>();
+    static {
+        try {
+            artistsListEnglish.add(URLEncoder.encode("Adele", "UTF-8"));
+            artistsListEnglish.add(URLEncoder.encode("Adele", "UTF-8"));
+            artistsListEnglish.add(URLEncoder.encode("Adele", "UTF-8"));
+            artistsListEnglish.add(URLEncoder.encode("Adele", "UTF-8"));
+            artistsListEnglish.add(URLEncoder.encode("Adele", "UTF-8"));
+            artistsListEnglish.add(URLEncoder.encode("Adele", "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+	public String artistRandomChooser(String language) {
+        if(language.equals("english")){
+		    String artist = artistsListEnglish.get((int) (Math.random() * 5));
+		    String URL = "https://itunes.apple.com/ru/search?term=" + artist + "&limit=10";
+		    return URL;
+        }else{
+            String artist = artistsListRussian.get((int) (Math.random() * 5));
+            String URL = "https://itunes.apple.com/ru/search?term=" + artist + "&limit=10";
+            return URL;
+        }
 	}
 
 	public ArrayList songRandomChooser(JSONObject jo) throws JSONException {
@@ -51,18 +72,17 @@ public class QuizListCreator {
 
 		String artist = JSONsongs.getJSONArray("results").getJSONObject(0).getString("artistName");
 		String firstSong = (String) songRandomChooser(JSONsongs).get(0);
-		String secondSong = (String) songRandomChooser(JSONsongs).get(0);
-		if (firstSong.equals(secondSong)) {
-			secondSong = (String) songRandomChooser(JSONsongs).get(0);
-		}
-		ArrayList songParams = songRandomChooser(JSONsongs);
-		String thirdSong = (String) songParams.get(0);
-		String imageURL = (String) songParams.get(1);
-		if (firstSong.equals(thirdSong) || (secondSong.equals(thirdSong))) {
-			songParams = songRandomChooser(JSONsongs);
-			thirdSong = (String) songParams.get(0);
-			imageURL = (String) songParams.get(1);
-		}
+        String secondSong;
+        String thirdSong;
+        String imageURL;
+        do{
+            secondSong = (String) songRandomChooser(JSONsongs).get(0);
+        }while(secondSong.equals(firstSong));
+		do{
+            ArrayList songParams = songRandomChooser(JSONsongs);
+            thirdSong = (String) songParams.get(0);
+            imageURL = (String) songParams.get(1);
+        }while(thirdSong.equals(firstSong) || (thirdSong.equals(secondSong)));
 
 		JavaRoundBean round = new JavaRoundBean();
 
