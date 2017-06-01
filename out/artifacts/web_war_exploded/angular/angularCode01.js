@@ -74,4 +74,16 @@ quizMainApp.controller("QuizAppCtrl", function ($http, $scope) {
     $scope.backLinkClick = function () {
         window.location.reload(false);
     };
+
+    $scope.chooseEnglishVersion = function(){
+        $scope.chooseVersion = true;
+        $scope.englishVersion = true;
+        $scope.russianVersion = false;
+    }
+
+    $scope.chooseRussianVersion = function(){
+        $scope.chooseVersion = true;
+        $scope.englishVersion = false;
+        $scope.russianVersion = true;
+    }
 })

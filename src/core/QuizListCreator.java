@@ -1,11 +1,13 @@
 package core;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
-import org.apache.catalina.util.URLEncoder;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,11 +15,17 @@ public class QuizListCreator {
 
 	public static ArrayList<String> artistsList = new ArrayList<String>();
 	static {
-		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
-		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
-		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
-		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
-		artistsList.add(URLEncoder.DEFAULT.encode("Ария", "UTF-8"));
+        try {
+            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
+            artistsList.add(URLEncoder.encode("Ария", "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
 	}
 
 	public String artistRandomChooser() {
